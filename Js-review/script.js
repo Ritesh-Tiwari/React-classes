@@ -143,7 +143,8 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-const book = getBook(2);
+/*
+const book = getBook(3);
 book;
 
 const { title, author, pages, genres, publicationDate, hasMovieAdaptation } = book;
@@ -206,9 +207,37 @@ console.log(book.translations.spanish)
 const spanishTranslation = book.translations.spanish || "Not TRANSLATED";
 spanishTranslation;
 
-console.log(book.reviews.librarything.reviewsCount)
-const countWrong = book.reviews.librarything.reviewsCount || 'No DATA';
-countWrong;
+// console.log(book.reviews.librarything.reviewsCount)
+// const countWrong = book.reviews.librarything.reviewsCount || 'No DATA';
+// countWrong;
 
-const count = book.reviews.librarything.reviewsCount ?? "no data";
-count;
+// const count = book.reviews.librarything.reviewsCount ?? "no data";
+// count;
+*/
+function getTotalReviewCount(book) {
+  //  ? (optional chaining )
+  const goodreads = book.reviews.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+console.log(getTotalReviewCount(book))
+
+
+const books = getBooks();
+books;
+
+//  arrow function and map method
+const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+console.log(x);
+
+const titles = books.map((book) => book.title);
+titles
+
+const essentialData = books.map((book) => ({
+  return {
+    title: book.title,
+    author: book.author,
+    reviewsCount: getTotalReviewCount(book),
+  };
+}));
+essentialData
