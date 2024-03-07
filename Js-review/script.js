@@ -249,3 +249,12 @@ const adventureBooks = books.filter((books)=>
   books.genres.includes("adventure")
 ).map((book)=>book.title);
 adventureBooks;
+
+// Array reduced method
+const pagesAllBooks = books.reduce((acc,book)=> acc + book.pages,0)
+pagesAllBooks
+
+// Array sort method
+const x =[3,4,8,4,1];
+const sorted = x.sort((a,b)=>a-b)
+sorted
