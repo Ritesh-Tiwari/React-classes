@@ -255,6 +255,28 @@ const pagesAllBooks = books.reduce((acc,book)=> acc + book.pages,0)
 pagesAllBooks
 
 // Array sort method
-const x =[3,4,8,4,1];
-const sorted = x.sort((a,b)=>a-b)
+const arr =[3,4,8,4,1];
+const sorted = arr.slice().sort((a,b)=>a-b)
 sorted
+arr
+
+const sortedbyPages = books.slice().sort((a,b)=>b.pages-a.pages)
+
+//  1_ add book object to array
+
+const newBook = {
+  int : 6,
+  title :"desiSwag",
+  auther:"Ritesh Tiwari",
+};
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd
+
+// 2) delete book object from array
+
+const booksAfterDelete = booksAfterAdd.filter((book)=> book.id !==3)
+booksAfterDelete
+
+// 3) Update book object in the array
+const booksAfterUpdate = booksAfterDelete.map((book=> book.id === 1 ?{}:book));
+booksAfterUpdate
