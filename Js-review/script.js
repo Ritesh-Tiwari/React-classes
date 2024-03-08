@@ -220,9 +220,9 @@ function getTotalReviewCount(book) {
   const librarything = book.reviews.librarything?.reviewsCount ?? 0;
   return goodreads + librarything;
 }
-console.log(getTotalReviewCount(book))
+// console.log(getTotalReviewCount(book))
 
-
+/*
 const books = getBooks();
 books;
 
@@ -234,10 +234,70 @@ const titles = books.map((book) => book.title);
 titles
 
 const essentialData = books.map((book) => ({
-  return {
     title: book.title,
     author: book.author,
     reviewsCount: getTotalReviewCount(book),
-  };
+  
 }));
 essentialData
+
+// array filter methods
+const longBooks = books.filter((book)=>book.pages > 500).filter((book)=>book.hasMovieAdaptation)
+longBooks
+
+const adventureBooks = books.filter((books)=>
+  books.genres.includes("adventure")
+).map((book)=>book.title);
+adventureBooks;
+
+// Array reduced method
+const pagesAllBooks = books.reduce((acc,book)=> acc + book.pages,0)
+pagesAllBooks
+
+// Array sort method
+const arr =[3,4,8,4,1];
+const sorted = arr.slice().sort((a,b)=>a-b)
+sorted
+arr
+
+const sortedbyPages = books.slice().sort((a,b)=>b.pages-a.pages)
+
+//  1_ add book object to array
+
+const newBook = {
+  int : 6,
+  title :"desiSwag",
+  auther:"Ritesh Tiwari",
+};
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd
+
+// 2) delete book object from array
+
+const booksAfterDelete = booksAfterAdd.filter((book)=> book.id !==3)
+booksAfterDelete
+
+// 3) Update book object in the array
+const booksAfterUpdate = booksAfterDelete.map((
+  book=> book.id === 1 ?{...book,pages:1210}:book));
+booksAfterUpdate
+
+*/
+
+// Asynchronous javascript: Promises
+// fetch('https://jsonplaceholder.typicode.com/todos').then((res)=>res.json()).then((data)=console.log(data));
+
+      
+// Asynchronous javascript:async/Await
+async function getTodos(){
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+ const data = await res.json()
+ console.log(data);
+ return data;
+}
+const todos = getTodos()
+console.log(todos);
+console.log("jonas")
+
+
+
