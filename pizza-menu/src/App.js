@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import React from "react";
-
+import "./index.css";
 import "./App.css";
 
 const pizzaData = [
@@ -50,7 +50,7 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
@@ -59,15 +59,47 @@ function App() {
 }
 
 function Header() {
-  return <h1>Fast React Pizza Co.</h1>;
+  const style = {};
+  return (
+    <header className="header">
+      <h1 style={style}>Fast React Pizza Co.</h1>
+    </header>
+  );
 }
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price={12}
+      />
+
+      <Pizza
+        name="Pizza Funggi"
+        ingredients="Tomato, mozarella, and ricotta cheese"
+        photoName="pizzas/funghi.jpg"
+        price={10}
+      />
+    </main>
+  );
+}
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img
+        src={props.photoName}
+        class="img-fluid rounded-top"
+        alt={props.name}
+      />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span> $ {props.price + 2}</span>
+      </div>
     </div>
   );
 }
@@ -81,24 +113,11 @@ function Footer() {
   // if (hour >= openHour && hour <= colseHour) alert("Were currently open");
   // else alert("Sorry We're closed");
   return (
-    <footer>{new Date().toLocaleTimeString()}. We're currently open !</footer>
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We're currently open !
+    </footer>
   );
   // return React.createElement("footer", null, "We're currently open !");
-}
-
-function Pizza() {
-  return (
-    <div>
-      <img
-        src="./pizzas/spinaci.jpg"
-        class="img-fluid rounded-top"
-        alt="Pizza spinci"
-        width="10%"
-      />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
-  );
 }
 
 export default App;
