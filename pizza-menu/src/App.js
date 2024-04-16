@@ -70,11 +70,18 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza
+
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+
+      {/* <Pizza
         name="Pizza Spinaci"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
         photoName="pizzas/spinaci.jpg"
-        price={12}
+        price={10}
       />
 
       <Pizza
@@ -82,25 +89,25 @@ function Menu() {
         ingredients="Tomato, mozarella, and ricotta cheese"
         photoName="pizzas/funghi.jpg"
         price={10}
-      />
+      /> */}
     </main>
   );
 }
 function Pizza(props) {
   console.log(props);
   return (
-    <div className="pizza">
+    <li className="pizza">
       <img
-        src={props.photoName}
-        class="img-fluid rounded-top"
-        alt={props.name}
+        src={props.pizzaObj.photoName}
+        className="img-fluid rounded-top"
+        alt={props.pizzaObj.name}
       />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <span> $ {props.price + 2}</span>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span> $ {props.pizzaObj.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -114,7 +121,14 @@ function Footer() {
   // else alert("Sorry We're closed");
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. We're currently open !
+      {isOpen && (
+        <div className="order">
+          <p>
+            {" "}
+            We're Open until {colseHour}:00. Come visit us or order online.
+          </p>
+        </div>
+      )}
     </footer>
   );
   // return React.createElement("footer", null, "We're currently open !");
