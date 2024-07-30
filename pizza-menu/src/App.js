@@ -74,12 +74,23 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
-      ) : <p>We're still working on our menu. Please come back later :) </p>}
+        // react Fragments (<>--</>)
+        <>
+          <p>
+            In India, a driving licence is an official document that authorises
+            its holder to operate various types of motor vehicles on highways
+            and some other roads to which the public has access
+          </p>
+
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p>We're still working on our menu. Please come back later :) </p>
+      )}
 
       {/* <Pizza
         name="Pizza Spinaci"
@@ -97,20 +108,20 @@ function Menu() {
     </main>
   );
 }
-function Pizza(props) {
-  console.log(props);
-  if (props.pizzaObj.soldOut) return null;
+function Pizza({ pizzaObj }) {
+  console.log(pizzaObj);
+  if (pizzaObj.soldOut) return null;
   return (
     <li className="pizza">
       <img
-        src={props.pizzaObj.photoName}
+        src={pizzaObj.photoName}
         className="img-fluid rounded-top"
-        alt={props.pizzaObj.name}
+        alt={pizzaObj.name}
       />
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span> $ {props.pizzaObj.price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span> $ {pizzaObj.price}</span>
       </div>
     </li>
   );
@@ -126,24 +137,27 @@ function Footer() {
   // else alert("Sorry We're closed");
   return (
     <footer className="footer">
-
       {/* ternaries operaters */}
 
       {isOpen ? (
         <Order colseHours={colseHour} />
-      ) : (<p>We're happy to welcome you between {openHour}:00 and {colseHour}:00. </p>)}
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {colseHour}:00.{" "}
+        </p>
+      )}
     </footer>
   );
   // return React.createElement("footer", null, "We're currently open !");
 }
 
-function Order(props) {
+function Order({ colseHours }) {
   return (
     <div className="order">
-      <p>We're Open until {props.colseHours}:00. Come visit us or order online.</p>
+      <p>We're Open until {colseHours}:00. Come visit us or order online.</p>
       <button className="btn">Order</button>
     </div>
-  )
+  );
 }
 
 export default App;
