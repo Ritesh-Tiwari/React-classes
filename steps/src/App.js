@@ -10,8 +10,10 @@ const messages = [
 // root component
 export default function App() {
   // useState is a hooks . all hooks start with 'use'
-  const [step, setStep] = useState(1)
+  // dont set state manually
 
+  const [step, setStep] = useState(1)
+  const [test, setTest] = useState({ name: "Ritesh " })
 
   function handlePrevious() {
     if (step > 1) setStep(step - 1);
@@ -20,6 +22,11 @@ export default function App() {
 
   function handleNext() {
     if (step < 3) setStep(step + 1);
+
+    // BAD PRACTICCE
+    // test.name = "Tiwari";
+    // correct way 
+    setTest({ name: "Tiwari" })
   }
 
   return <div className="steps">
@@ -30,7 +37,7 @@ export default function App() {
     </div>
 
     <p className="message">
-      Step {step}: {messages[step - 1]}
+      Step {step}: {messages[step - 1]} test.name
     </p>
 
     <div className="buttons">
