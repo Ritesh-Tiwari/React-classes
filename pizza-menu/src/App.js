@@ -9,7 +9,7 @@ const pizzaData = [
     ingredients: "Bread with italian olive oil and rosemary",
     price: 6,
     photoName: "pizzas/focaccia.jpg",
-    soldOut: false,
+    soldOut: true,
   },
   {
     name: "Pizza Margherita",
@@ -110,9 +110,15 @@ function Menu() {
 }
 function Pizza({ pizzaObj }) {
   console.log(pizzaObj);
-  if (pizzaObj.soldOut) return null;
+  // if (pizzaObj.soldOut) return null;
   return (
-    <li className="pizza">
+    /*
+    *  Setting a class and text conditionally
+    *  Javascript operater {`pizza ${pizzaObj.soldOut ? 'sold-out' : ''}`}
+    *   (pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}
+    */
+
+    <li className={`pizza ${pizzaObj.soldOut ? 'sold-out' : ''}`}>
       <img
         src={pizzaObj.photoName}
         className="img-fluid rounded-top"
@@ -121,7 +127,7 @@ function Pizza({ pizzaObj }) {
       <div>
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
-        <span> $ {pizzaObj.price}</span>
+        <span> $ {pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );

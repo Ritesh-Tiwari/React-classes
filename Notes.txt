@@ -1,0 +1,3 @@
+Setting a class and text conditionally : 
+    1. setting class :  Javascript operater {`pizza ${pizzaObj.soldOut ? 'sold-out' : ''}`}
+    2. setting text  : (pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}
