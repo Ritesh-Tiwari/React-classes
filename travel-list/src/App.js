@@ -10,8 +10,14 @@ export default function App() {
   // check form functions
   const [items, setItems] = useState(initialItems);
 
+  // Not to do this way 
+  // const [numItems, setNumItems] = useState(0)
+
+
   function handleAddItems(item) {
     setItems(items => [...items, item]);
+    //  it not a good practice
+    // setNumItems((num) => num + 1)
   }
 
   function handleDeleteItem(id) {
@@ -28,7 +34,7 @@ export default function App() {
       <From onAddItems={handleAddItems} />
       <PackingList items={items} onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem} />
-      <Stats />
+      <Stats items={items} />
 
     </div>
   );
@@ -103,9 +109,27 @@ function Item({ item, onDeleteItem, onToggleItem }) {
   );
 }
 
-function Stats() {
+function Stats({ items }) {
+
+  if (!items.length)
+    return (
+      <p className="stats">
+        <em>
+          Start adding some items to your packing list
+        </em>
+      </p>
+    );
+
+  const numItems = items.length;
+  const numPacked = items.filter((items) => items.packed).length;
+  const parecentage = Math.round((numPacked / numItems) * 100);
+
   return <footer className="stats">
-    <em> you have X items on your list, and you already packed (X%)
+    <em> {parecentage === 100
+      ? "You got everything ! Ready to go " :
+      `you have ${numItems} items on your list,
+      and you already packed ${numPacked} (${parecentage}%)`
+    }
     </em>
   </footer>
 }
